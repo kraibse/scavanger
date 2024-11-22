@@ -7,11 +7,23 @@ class Player():
     max_speed = 0
 
     def __init__(self, level):
-        self.sprite = SpriteAnimation('assets/player/idle/', 'player0', 1)
         self.position = [math.floor(level.w / 2, 0), math.floor(level.h / 2, 0)]
+        self.animations = {
+            "idle": SpriteAnimation('assets/player/idle/', 'player0', 1)
+        }
 
-    def draw(self):
-        self.sprite.draw()
+        self.current_animation = "idle"
+        self.get_current_animation().play()
+
+    def change_animation(self, new_anim="idle"):
+        animation = self.get_current_animation()
+        animation.stop()
+        
+        self.current_animation = new_anim
+        animation.play()
+
+    def get_current_animation(self):
+        self.animations.get(self.current_animation)
 
     def is_accelerating(self):
         keys = pygame.key.get_pressed()
@@ -21,6 +33,8 @@ class Player():
         return False
 
     def move(self):
+        self.current_animation = "idle"
+
         mousex, mousey = pygame.mouse.get_pos()
         mx = mousex - self.position[0]
         my = mousey - self.position[1]

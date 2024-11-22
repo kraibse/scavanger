@@ -1,23 +1,32 @@
 import pygame
 
+from scene_manager import SceneManager
+from levels import Level1, Level2
+
 SCREEN_W, SCREEN_H = 600,400
 FPS = 60
-running = True
 
 class Game:
     def __init__(self) -> None:
         pygame.init()
         self.screen = pygame.display.set_mode((SCREEN_W,SCREEN_H))
         self.clock = pygame.time.Clock()
+        self.is_running = True
+        self.scene_manager = SceneManager(self.screen,'level1')
+        self.level1 = Level1(self.screen,self.scene_manager)
+        self.level2 = Level2(self.screen,self.scene_manager)
+        self.scenes = {'level1': self.level1,'level2':self.level2}
     
     def run(self):
-        global running
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
-        self.clock.tick(FPS)
+        while self.is_running:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.is_running = False
+            self.scenes[self.scene_manager.get_current_scene()].run()
+            pygame.display.update()
+            self.clock.tick(FPS)
 
 
-if __name__ == '__name__':
+if __name__ == '__main__':
     game = Game()
     game.run()

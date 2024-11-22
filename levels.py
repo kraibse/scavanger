@@ -8,8 +8,8 @@ class Scene:
 
 class Level1(Scene):
     def run(self):
-        pass
+        self.screen.fill('red')
 
 class Level2(Scene):
     def run(self):
-        pass
+        self.screen.fill('blue')

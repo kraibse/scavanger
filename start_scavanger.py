@@ -26,6 +26,9 @@ class Game:
             pygame.display.update()
             self.clock.tick(FPS)
 
+    def get_delta_time(self):
+        return self.clock.tick(60) / 1000
+
 
 if __name__ == '__main__':
     game = Game()

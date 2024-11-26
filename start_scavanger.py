@@ -19,9 +19,6 @@ class Game:
         self.screen = pygame.display.set_mode((Game.SCREEN_W,Game.SCREEN_H))
         self.clock = pygame.time.Clock()
         self.is_running = True
-        
-        # self.loop = asyncio.get_event_loop()
-
         self.scene_manager = SceneManager(self.screen,'level1')
         self.level1 = Level1(self.screen,self.scene_manager)
         self.level2 = Level2(self.screen,self.scene_manager)
@@ -32,9 +29,6 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.is_running = False
-            
-            # self.loop.run_until_complete(self.update())
-                    
             self.scenes[self.scene_manager.get_current_scene()].run()
             pygame.display.update()
             self.clock.tick(Game.FPS)

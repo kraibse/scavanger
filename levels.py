@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # Author:      schmmar1857
 # Created:     22.11.2024
-# Version:     2
+# Version:     3
 #-------------------------------------------------------------------------------
 
 import pygame
@@ -40,14 +40,15 @@ class Scene:
 
     def draw(self):
         self.screen.blit(self.background,(0,0))
-        self.player.move()
-        self.player.draw()
+
+        for planet in self.planets:
+            planet.draw()
 
         for enemy in self.enemies:
             enemy.draw()
 
-        for planet in self.planets:
-            planet.draw()
+        self.player.move()
+        self.player.draw()
         
         self.ui.draw()
         

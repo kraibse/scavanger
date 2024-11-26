@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # Author:      schmmar1857
 # Created:     26.11.2024
-# Version:     1
+# Version:     2
 #-------------------------------------------------------------------------------
 
 import pygame
@@ -20,20 +20,38 @@ class Button:
         self.rect = self.image_current.get_rect()
         self.rect.topleft = (x,y)
         self.clicked = False
-    
+
     def draw(self):
         mouse_pos = pygame.mouse.get_pos()
+
         if self.rect.collidepoint(mouse_pos):
+            self.set_image(self.image_hover)
             if pygame.mouse.get_pressed()[0] and not self.clicked:
-                self.set_image(self.image_hover)
                 self.clicked = True
                 print('CLICKED')
         else:
             self.set_image(self.image_normal)
+
         if not pygame.mouse.get_pressed()[0]:
             self.clicked = False
-        self.screen.blit(self.image,(self.rect.x,self.rect.y))
-        self.screen.blit(self.button_font,(self.rect.x,self.rect.y))
-    
-    def set_image(self,image):
+
+        self.screen.blit(self.image_current, (self.rect.x, self.rect.y))
+        self.draw_text()
+
+    def draw_text(self):
+        max_width, max_height = self.rect.width, self.rect.height
+        font_size = 32
+        font = pygame.font.SysFont("freesans", font_size)
+        text_surface = font.render(self.text, True, 'white')
+
+        while text_surface.get_width() > max_width or text_surface.get_height() > max_height:
+            font_size -= 1
+            font = pygame.font.SysFont("freesans", font_size)
+            text_surface = font.render(self.text, True, 'white')
+
+        text_x = self.rect.x + (self.rect.width - text_surface.get_width()) // 2
+        text_y = self.rect.y + (self.rect.height - text_surface.get_height()) // 2
+        self.screen.blit(text_surface, (text_x, text_y))
+
+    def set_image(self, image):
         self.image_current = image

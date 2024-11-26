@@ -4,13 +4,14 @@ import asyncio
 from scene_manager import SceneManager
 from levels import Level1, Level2
 
-SCREEN_W, SCREEN_H = 600,400
-FPS = 60
-
 class Game:
+    SCREEN_W, SCREEN_H = 1000,600
+    FPS = 60
+    
     def __init__(self) -> None:
         pygame.init()
-        self.screen = pygame.display.set_mode((SCREEN_W,SCREEN_H))
+        pygame.display.set_caption('Scavanger')
+        self.screen = pygame.display.set_mode((Game.SCREEN_W,Game.SCREEN_H))
         self.clock = pygame.time.Clock()
         self.is_running = True
         
@@ -31,14 +32,13 @@ class Game:
                     
             self.scenes[self.scene_manager.get_current_scene()].run()
             pygame.display.update()
-            self.clock.tick(FPS)
+            self.clock.tick(Game.FPS)
 
     async def update(self):
         await asyncio.sleep(0)
 
     def get_delta_time(self):
         return self.clock.tick(60) / 1000
-
 
 if __name__ == '__main__':
     game = Game()

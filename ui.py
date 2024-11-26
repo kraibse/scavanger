@@ -15,18 +15,23 @@ class UI:
         self.screen = screen
         image_button_normal = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Normal.png').convert_alpha()
         image_button_hover = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Hover.png').convert_alpha()
-        self.shop_button = Button(self.screen,100,100,image_button_normal,image_button_hover,'Shop',1)
-        self.cash_button = Button(self.screen,300,100,image_button_normal,image_button_hover,'Test',1)
-        self.level_button = Button(self.screen,500,100,image_button_normal,image_button_hover,'Test2',0.5)
-        self.text_box1 = TextBox(self.screen,500,500,'minerals')
+        image_main_menu = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/main_menu.png').convert_alpha()
+        self.shop_button = Button(self.screen,SCREEN_W//2,SCREEN_H-30,image_button_normal,image_button_hover,text='Shop',action='open_shop')
+        self.main_menu_button = Button(self.screen,SCREEN_W-30,30,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
+        self.level_box = TextBox(self.screen,20,SCREEN_H-50,f'Level: _')
+        self.health_box = TextBox(self.screen,20,20,f'Health: _/5')
+        self.cash_box = TextBox(self.screen,20,60,f'Cash: _')
+        self.info = TextBox(self.screen,SCREEN_W-150,SCREEN_H-30,'Hold space to move...',15)
 
         self.buttons = [
-            self.level_button,
             self.shop_button,
-            self.cash_button,
+            self.main_menu_button,
         ]
         self.text_boxes = [
-            self.text_box1
+            self.health_box,
+            self.cash_box,
+            self.level_box,
+            self.info,
         ]
 
     def draw(self):

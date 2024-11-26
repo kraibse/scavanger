@@ -7,18 +7,18 @@
 import pygame
 
 class Button:
-    def __init__(self,screen,x,y,image_normal,image_hover,text,scale) -> None:
+    def __init__(self,screen,x,y,image_normal,image_hover,text='',scale=1,action='') -> None:
         self.screen = screen
         width = image_normal.get_width()
         height = image_normal.get_height()
         self.image_normal = pygame.transform.scale(image_normal,(int(width*scale),int(height*scale)))
         self.image_hover = pygame.transform.scale(image_hover,(int(width*scale),int(height*scale)))
         self.text = text
+        self.action = action
 
-        self.button_font = pygame.font.SysFont("freesans",32)
         self.image_current = self.image_normal
         self.rect = self.image_current.get_rect()
-        self.rect.topleft = (x,y)
+        self.rect.center = (x,y)
         self.clicked = False
 
     def draw(self):
@@ -28,7 +28,7 @@ class Button:
             self.set_image(self.image_hover)
             if pygame.mouse.get_pressed()[0] and not self.clicked:
                 self.clicked = True
-                print('CLICKED')
+                self.button_action()
         else:
             self.set_image(self.image_normal)
 
@@ -39,6 +39,8 @@ class Button:
         self.draw_text()
 
     def draw_text(self):
+        if self.text == '':
+            return
         max_width, max_height = self.rect.width, self.rect.height
         font_size = 32
         font = pygame.font.SysFont("freesans", font_size)
@@ -55,3 +57,10 @@ class Button:
 
     def set_image(self, image):
         self.image_current = image
+    
+    def button_action(self):
+        match self.action:
+            case 'open_shop':
+                print('open_shop') #TODO implement in shop class 
+            case _:
+                print('no method') #TODO delete after test

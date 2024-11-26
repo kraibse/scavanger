@@ -1,3 +1,9 @@
+#-------------------------------------------------------------------------------
+# Author:      schmmar1857
+# Created:     22.11.2024
+# Version:     2
+#-------------------------------------------------------------------------------
+
 import pygame
 
 from player import Player
@@ -6,6 +12,8 @@ from ui import UI
 class Scene:
     PATH_PLACEHOLDER_BACKGROUND = 'assets/background/placeholder_background.png'
     PATH_PLACEHOLDER_BACKGROUND2 = 'assets/background/placeholder_background2.png'
+    PATH_BACKGROUND_LEVEL1 = 'assets/background/purple_nebula_background.png'
+    PATH_BACKGROUND_LEVEL2 = 'assets/background/Green_Nebula_07-1024x1024.png'
     IMAGE_PLAY_BUTTON = 'assets/buttons/Rect-Medium/PlayIcon/Default.png'
 
     def __init__(self,screen,scene_manager) -> None:
@@ -44,7 +52,7 @@ class Scene:
 class Level1(Scene):
     def __init__(self, screen, scene_manager) -> None:
         super().__init__(screen, scene_manager)
-        self.background = pygame.image.load(Scene.PATH_PLACEHOLDER_BACKGROUND).convert_alpha()
+        self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL1).convert_alpha()
     
     def spawn_enemies(self):
         return []
@@ -55,7 +63,7 @@ class Level1(Scene):
 class Level2(Scene):
     def __init__(self, screen, scene_manager) -> None:
         super().__init__(screen, scene_manager)
-        self.background = pygame.image.load(Scene.PATH_PLACEHOLDER_BACKGROUND2).convert_alpha()
+        self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()
     
     def spawn_enemies(self):
         return []

@@ -6,8 +6,10 @@
 
 import pygame
 import os
+import random
 
 from player import Player
+from planet import Planet
 from ui import UI
 
 from globals import SCREEN_W, SCREEN_H, BASE_PATH
@@ -51,6 +53,17 @@ class Scene:
         return []
     
     def spawn_planets(self):
+        self.planets = []
+        
+        for planet in range(self.total_planets):
+            rx = random.randomint(0, SCREEN_W)
+            ry = random.randomint(0, SCREEN_H)
+            
+            new_planet = Planet(self.screen, 100, 20)
+            new_planet.set_type("Lava")
+            new_planet.set_position(rx, ry)
+            self.planets.append(new_planet)
+        
         return []
 
 

@@ -16,7 +16,7 @@ from animated_sprite import SpriteAnimation
 from globals import SCREEN_W, SCREEN_H
 
 class Player():
-    max_speed = 0
+    max_speed = 5
 
     def __init__(self, level):
         w = SCREEN_W
@@ -44,12 +44,10 @@ class Player():
         
     def draw(self):
         current_sprite = self.get_current_animation()._get_current_sprite()
-        print(current_sprite)
         
         if current_sprite is None:
             return
         
-        print("Drawing player at " + str(self.position[0]) + ", " + str(self.position[1]))
         self.level.screen.blit(current_sprite, (self.position[0], self.position[1]))
 
     def get_current_animation(self):
@@ -74,11 +72,11 @@ class Player():
             return
 
         # TODO: accelerate and deccelerate smoothly
-        motion = [mx / distance, my / distance] * self.max_speed    # move the player at a constant speed for now
+        motion = [mx / distance * self.max_speed, my / distance * self.max_speed]    # move the player at a constant speed for now
 
         if self.is_accelerating():
-            self.position[0] + motion[0]
-            self.position[1] + motion[1]
+            self.position[0] += motion[0]
+            self.position[1] += motion[1]
 
 
     def mine(self):

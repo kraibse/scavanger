@@ -3,6 +3,8 @@ import pygame
 from player import Player
 from ui import UI
 
+from globals import SCREEN_W, SCREEN_H
+
 class Scene:
     PATH_PLACEHOLDER_BACKGROUND = 'assets/background/placeholder_background.png'
     PATH_PLACEHOLDER_BACKGROUND2 = 'assets/background/placeholder_background2.png'
@@ -17,14 +19,15 @@ class Scene:
         self.enemies = self.spawn_enemies()
         self.planets = self.spawn_planets()
         self.ui = UI(self.screen)
-        # self.player = Player(self) #TODO Player einbauen
+
+        self.player = Player(self)
     
     def run(self):
         self.draw()
 
     def draw(self):
         self.screen.blit(self.background,(0,0))
-        # self.player.draw()
+        self.player.draw()
 
         for enemy in self.enemies:
             enemy.draw()

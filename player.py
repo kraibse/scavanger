@@ -13,11 +13,9 @@ import pygame
 import math
 
 from animated_sprite import SpriteAnimation
-from globals import SCREEN_W, SCREEN_H
+from globals import SCREEN_W, SCREEN_H, MIN_DISTANCE_TO_CURSOR, MAX_PLAYER_SPEED
 
 class Player():
-    max_speed = 5
-
     def __init__(self, level):
         w = SCREEN_W
         h = SCREEN_H
@@ -48,7 +46,16 @@ class Player():
         if current_sprite is None:
             return
         
-        self.level.screen.blit(current_sprite, (self.position[0], self.position[1]))
+        # Calculate the angle to rotate the sprite
+        mousex, mousey = pygame.mouse.get_pos()
+        mx = mousex - self.position[0]
+        my = mousey - self.position[1]
+        angle = math.degrees(math.atan2(-my, mx)) - 90  # Negative 'my' because pygame's y-axis is inverted
+
+        rotated_sprite = pygame.transform.rotate(current_sprite, angle)
+        sprite_rect = rotated_sprite.get_rect(center=(self.position[0], self.position[1]))
+        
+        self.level.screen.blit(rotated_sprite, sprite_rect)
 
     def get_current_animation(self):
         return self.animations.get(self.current_animation)
@@ -68,11 +75,11 @@ class Player():
         my = mousey - self.position[1]
 
         distance = math.sqrt(mx ** 2 + my ** 2)
-        if distance == 0:
+        if distance <= MIN_DISTANCE_TO_CURSOR:
             return
 
         # TODO: accelerate and deccelerate smoothly
-        motion = [mx / distance * self.max_speed, my / distance * self.max_speed]    # move the player at a constant speed for now
+        motion = [mx / distance * MAX_PLAYER_SPEED, my / distance * MAX_PLAYER_SPEED]    # move the player at a constant speed for now
 
         if self.is_accelerating():
             self.position[0] += motion[0]

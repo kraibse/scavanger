@@ -7,9 +7,9 @@ class Player():
     max_speed = 0
 
     def __init__(self, level):
-        self.position = [math.floor(level.w / 2, 0), math.floor(level.h / 2, 0)]
+        self.position = [math.floor(level.w / 2), math.floor(level.h / 2)]
         self.animations = {
-            "idle": SpriteAnimation('assets/player/idle/', 'player0', 1)
+            "idle": SpriteAnimation('/home/kraibse/projects/scavanger/assets/sprites/player/', 'player0', 1)
         }
 
         self.current_animation = "idle"
@@ -23,7 +23,7 @@ class Player():
         animation.play()
 
     def get_current_animation(self):
-        self.animations.get(self.current_animation)
+        return self.animations.get(self.current_animation)
 
     def is_accelerating(self):
         keys = pygame.key.get_pressed()

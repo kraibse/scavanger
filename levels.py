@@ -1,8 +1,14 @@
+from player import Player
+
+
 class Scene:
+    w = 720
+    h = 480
+    
     def __init__(self,screen,scene_manager) -> None:
         self.screen = screen
         self.scene_manager = scene_manager
-        self.player = self.scene_manager.player
+        self.player = Player(self)
 
         self.enemies = self.spawn_enemies()
         self.planet = self.spawn_planets()

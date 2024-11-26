@@ -12,7 +12,7 @@ from player import Player
 from planet import Planet
 from ui import UI
 
-from globals import SCREEN_W, SCREEN_H, BASE_PATH
+from globals import *
 
 class Scene:
     PATH_PLACEHOLDER_BACKGROUND = BASE_PATH + 'assets/background/placeholder_background.png'
@@ -21,16 +21,18 @@ class Scene:
     PATH_BACKGROUND_LEVEL2 = BASE_PATH + 'assets/background/Green_Nebula_07-1024x1024.png'
     IMAGE_PLAY_BUTTON = BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Default.png'
 
-    def __init__(self,screen,scene_manager) -> None:
+    def __init__(self,screen,scene_manager, total_planets) -> None:
         self.screen = screen
         self.scene_manager = scene_manager
+        self.total_planets = total_planets
         self.background = pygame.image.load(Scene.PATH_PLACEHOLDER_BACKGROUND).convert_alpha()
         self.widht = self.background.get_width()
         self.height = self.background.get_height()
         self.enemies = self.spawn_enemies()
-        self.planets = self.spawn_planets()
+        
+        self.spawn_planets()
+        
         self.ui = UI(self.screen)
-
         self.player = Player(self)
     
     def run(self):
@@ -56,36 +58,35 @@ class Scene:
         self.planets = []
         
         for planet in range(self.total_planets):
-            rx = random.randomint(0, SCREEN_W)
-            ry = random.randomint(0, SCREEN_H)
+            rx = random.randint(MAP_X0, MAP_X1)
+            ry = random.randint(MAP_Y0, MAP_Y1)
             
-            new_planet = Planet(self.screen, 100, 20)
+            new_planet = Planet(self.screen, 100, random.randint(3, 20))
             new_planet.set_type("Lava")
             new_planet.set_position(rx, ry)
             self.planets.append(new_planet)
         
-        return []
+        return self.planets
 
 
 class Level1(Scene):
     def __init__(self, screen, scene_manager) -> None:
-        super().__init__(screen, scene_manager)
+        total_planets = 5
+        
+        super().__init__(screen, scene_manager, total_planets)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL1).convert_alpha()
     
     def spawn_enemies(self):
         return []
-    
-    def spawn_planets(self):
-        return []
+
 
 class Level2(Scene):
     def __init__(self, screen, scene_manager) -> None:
-        super().__init__(screen, scene_manager)
+        total_planets = 10
+        
+        super().__init__(screen, scene_manager, total_planets)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()
     
     def spawn_enemies(self):
-        return []
-    
-    def spawn_planets(self):
         return []
     

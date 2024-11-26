@@ -17,6 +17,12 @@ class UI:
         self.cash_button = Button(self.screen,100,100,image_shop_button_normal,image_shop_button_hover,'Shop',1)
         self.shop_button = Button(self.screen,100,100,image_shop_button_normal,image_shop_button_hover,'Shop',1)
 
+        self.buttons = [
+            self.shop_button, 
+            self.cash_button,
+        ]
 
     def draw(self):
-        self.play_button.draw()
+        # for button in self.buttons:
+        #     button.draw()
+        pass

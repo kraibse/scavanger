@@ -1,5 +1,6 @@
 class Scavengeable:
-    def __init__(self, maxDurability : int, resourceDrops : int):
+    def __init__(self, screen, maxDurability : int, resourceDrops : int):
+        self.screen = screen
         self.resourceDrops = resourceDrops
         self.maxDurability = maxDurability
         self.durability = maxDurability

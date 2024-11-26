@@ -17,7 +17,7 @@ class Button:
 
         self.button_font = pygame.font.SysFont("freesans",32)
         self.image_current = self.image_normal
-        self.rect = self.image.get_rect()
+        self.rect = self.image_current.get_rect()
         self.rect.topleft = (x,y)
         self.clicked = False
     

@@ -5,18 +5,19 @@
 #-------------------------------------------------------------------------------
 
 import pygame
+import os
 
 from player import Player
 from ui import UI
 
-from globals import SCREEN_W, SCREEN_H
+from globals import SCREEN_W, SCREEN_H, BASE_PATH
 
 class Scene:
-    PATH_PLACEHOLDER_BACKGROUND = 'assets/background/placeholder_background.png'
-    PATH_PLACEHOLDER_BACKGROUND2 = 'assets/background/placeholder_background2.png'
-    PATH_BACKGROUND_LEVEL1 = 'assets/background/purple_nebula_background.png'
-    PATH_BACKGROUND_LEVEL2 = 'assets/background/Green_Nebula_07-1024x1024.png'
-    IMAGE_PLAY_BUTTON = 'assets/buttons/Rect-Medium/PlayIcon/Default.png'
+    PATH_PLACEHOLDER_BACKGROUND = BASE_PATH + 'assets/background/placeholder_background.png'
+    PATH_PLACEHOLDER_BACKGROUND2 = BASE_PATH + 'assets/background/placeholder_background2.png'
+    PATH_BACKGROUND_LEVEL1 = BASE_PATH + 'assets/background/purple_nebula_background.png'
+    PATH_BACKGROUND_LEVEL2 = BASE_PATH + 'assets/background/Green_Nebula_07-1024x1024.png'
+    IMAGE_PLAY_BUTTON = BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Default.png'
 
     def __init__(self,screen,scene_manager) -> None:
         self.screen = screen
@@ -35,6 +36,7 @@ class Scene:
 
     def draw(self):
         self.screen.blit(self.background,(0,0))
+        self.player.move()
         self.player.draw()
 
         for enemy in self.enemies:

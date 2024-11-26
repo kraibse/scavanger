@@ -13,13 +13,20 @@ class SpriteAnimation():
 
     def __init__(self, base_path, file_prefix, animation_length, file_ext='.jpg'):
         # self.sprite = pygame.image.load(base_path + file_prefix + file_ext)
-        self.w = self.sprite.get_height()
-        self.h = self.sprite.get_width()
+        self.base_path = base_path
+        self.file_prefix = file_prefix
+        self.animation_length = animation_length
+        self.file_ext = file_ext
 
         if self.frames is None:
             self.frames = []
+
+        if os.path.isfile(base_path + file_prefix + '0' + file_ext):
+            print("The file was found.")
         
         self._get_frames()
+        self.w = self.frames[0].get_height()
+        self.h = self.frames[0].get_width()
 
     def _get_current_frame(self):
         return self.active_frame
@@ -49,7 +56,7 @@ class SpriteAnimation():
 
     def play(self):
         # run once when the animation of the player or enemy changes
-        asyncio.run(self._play_animation)
+        self._play_animation()
 
     def stop(self):
         self.is_running = False

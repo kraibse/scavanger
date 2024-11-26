@@ -13,7 +13,10 @@ import pygame
 import math
 
 from animated_sprite import SpriteAnimation
+
+import globals
 from globals import SCREEN_W, SCREEN_H, MIN_DISTANCE_TO_CURSOR, MAX_PLAYER_SPEED
+
 
 class Player():
     def __init__(self, level):
@@ -82,8 +85,12 @@ class Player():
         motion = [mx / distance * MAX_PLAYER_SPEED, my / distance * MAX_PLAYER_SPEED]    # move the player at a constant speed for now
 
         if self.is_accelerating():
-            self.position[0] += motion[0]
-            self.position[1] += motion[1]
+            # self.position[0] += motion[0]
+            # self.position[1] += motion[1]
+            globals.camera_offset_x += motion[0]
+            globals.camera_offset_y += motion[1]
+            
+            print(globals.camera_offset_x, globals.camera_offset_y)
 
 
     def mine(self):

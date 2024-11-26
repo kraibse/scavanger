@@ -1,6 +1,7 @@
 import pygame
 
-from globals import BASE_PATH
+import globals
+from globals import *
 from scavengeable import Scavengeable
 from animated_sprite import SpriteAnimation
 
@@ -24,7 +25,10 @@ class Planet(Scavengeable):
         sy = current_sprite.get_height() + 5 * self.resourceDrops
         scaled_sprite = pygame.transform.scale(current_sprite, (sx, sy))
         
-        self.screen.blit(scaled_sprite, (self.position[0], self.position[1]))
+        offset_x = self.position[0] - globals.camera_offset_x
+        offset_y = self.position[1] - globals.camera_offset_y
+        
+        self.screen.blit(scaled_sprite, (offset_x, offset_y))
         
     def get_current_sprite(self):
         # self.animation._get_current_sprite()

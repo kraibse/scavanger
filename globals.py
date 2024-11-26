@@ -8,8 +8,11 @@ MAP_Y0 = -SCREEN_H
 MAP_X1 = SCREEN_W * 2
 MAP_Y1 = SCREEN_H * 2
 
-BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
+# Camera
+camera_offset_x = 0
+camera_offset_y = 0
 
+BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 
 # player properties
 MIN_DISTANCE_TO_CURSOR = 48

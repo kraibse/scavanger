@@ -9,10 +9,15 @@
 
 import pygame
 import button_event
+from globals import BASE_PATH
 
 class Button:
-    def __init__(self,screen,x,y,image_normal,image_hover,text='',scale=1,action='') -> None:
+    def __init__(self,screen,x,y,image_normal=None,image_hover=None,text='',scale=1,action='') -> None:
         self.screen = screen
+        if not image_normal:
+            image_normal = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Normal.png').convert_alpha()
+        if not image_hover:
+            image_hover = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Hover.png').convert_alpha()
         width = image_normal.get_width()
         height = image_normal.get_height()
         self.image_normal = pygame.transform.scale(image_normal,(int(width*scale),int(height*scale)))
@@ -66,5 +71,9 @@ class Button:
         match self.action:
             case 'toggle_shop':
                 button_event.toggle_shop()
+            case 'set_level1':
+                button_event.set_scene('level1')
+            case 'set_level2':
+                button_event.set_scene('level2')
             case _:
                 print('no method') #TODO delete after test

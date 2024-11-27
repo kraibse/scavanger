@@ -1,19 +1,23 @@
 '''
 @author: Marcus Schmidt
-@version: 1.0
+@version: 2.0
 
 @datum: 2024-11-22
 
 @description: Klassen zum Managen des aktuellen Levels/Scene
 '''
 
+from globals import current_scene
+
 class SceneManager():
-    def __init__(self,screen,scene):
+    def __init__(self,screen):
         self.screen = screen
-        self.scene = scene
-    
-    def get_current_scene(self):
-        return self.scene
-    
+
+    @classmethod
     def set_scene(self,scene):
-        self.scene = scene
+        global current_scene
+        current_scene = scene
+
+    @classmethod
+    def get_current_scene(self):
+        return current_scene

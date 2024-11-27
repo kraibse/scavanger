@@ -15,10 +15,8 @@ from button import Button
 class Shop:
     def __init__(self,surface) -> None:
         self.surface = surface
-        image_button_normal = pygame.image.load(globals.BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Normal.png').convert_alpha()
-        image_button_hover = pygame.image.load(globals.BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Hover.png').convert_alpha()
         image_health = pygame.image.load(globals.BASE_PATH + 'assets/sprites/health/HeartsFrame1.png').convert_alpha()
-        self.shop_button = Button(self.surface,globals.SCREEN_W//2,globals.SCREEN_H-30,image_button_normal,image_button_hover,text='Shop',action='toggle_shop')
+        self.shop_button = Button(self.surface,globals.SCREEN_W//2,globals.SCREEN_H-30,text='Shop',action='toggle_shop')
 
         self.health_button = Button(self.surface,globals.SCREEN_W//2,globals.SCREEN_H//2,image_health,image_health,'',scale=2,action='')
         self.shop_elements = [

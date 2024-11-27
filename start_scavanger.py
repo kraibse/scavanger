@@ -23,7 +23,7 @@ class Game:
         self.screen = pygame.display.set_mode((Game.SCREEN_W,Game.SCREEN_H))
         self.clock = pygame.time.Clock()
         self.is_running = True
-        self.scene_manager = SceneManager(self.screen,'level1')
+        self.scene_manager = SceneManager(self.screen)
         self.level1 = Level1(self.screen,self.scene_manager)
         self.level2 = Level2(self.screen,self.scene_manager)
         self.scenes = {'level1': self.level1,'level2':self.level2}

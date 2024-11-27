@@ -72,8 +72,8 @@ class Button:
             case 'toggle_shop':
                 button_event.toggle_shop()
             case 'set_level1':
-                button_event.set_scene('level1')
+                button_event.set_scene('Level 1')
             case 'set_level2':
-                button_event.set_scene('level2')
+                button_event.set_scene('Level 2')
             case _:
                 print('no method') #TODO delete after test

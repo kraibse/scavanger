@@ -29,7 +29,9 @@ class TextBox:
     def get_text_value(self):
         match self.dynamic_text:
             case 'mined_resources':
-                return f'Resources: {globals.mined_resources}'
+                return str(globals.mined_resources)
+            case 'level':
+                return str(globals.current_scene)
             case _:
                 return self.text
             

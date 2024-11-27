@@ -35,4 +35,4 @@ mining_speed = 0.5
 mined_resources = 0
 current_player_health = 3
 shop_active = False
-current_scene = 'level1'
+current_scene = 'Level 1'

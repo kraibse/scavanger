@@ -26,7 +26,7 @@ class Game:
         self.scene_manager = SceneManager(self.screen)
         self.level1 = Level1(self.screen,self.scene_manager)
         self.level2 = Level2(self.screen,self.scene_manager)
-        self.scenes = {'level1': self.level1,'level2':self.level2}
+        self.scenes = {'Level 1': self.level1,'Level 2':self.level2}
     
     def run(self):
         while self.is_running:

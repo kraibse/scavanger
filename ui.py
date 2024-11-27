@@ -9,6 +9,7 @@ import pygame
 from globals import SCREEN_W, SCREEN_H, BASE_PATH
 from button import Button
 from text_box import TextBox
+from health_bar import HealthBar
 
 class UI:
     def __init__(self,screen) -> None:
@@ -19,16 +20,15 @@ class UI:
         self.shop_button = Button(self.screen,SCREEN_W//2,SCREEN_H-30,image_button_normal,image_button_hover,text='Shop',action='toggle_shop')
         self.main_menu_button = Button(self.screen,SCREEN_W-30,30,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
         self.level_box = TextBox(self.screen,20,SCREEN_H-50,f'Level: _')
-        self.health_box = TextBox(self.screen,20,20,f'Health: _/5')
-        self.cash_box = TextBox(self.screen,20,60,f'Cash: _')
+        self.cash_box = TextBox(self.screen,20,60,f'Cash: _',dynamic_text='mined_resources')
         self.info = TextBox(self.screen,SCREEN_W-150,SCREEN_H-30,'Hold space to move...',15)
 
+        self.health_bar = HealthBar(self.screen,20,20)
         self.buttons = [
             self.shop_button,
             self.main_menu_button,
         ]
         self.text_boxes = [
-            self.health_box,
             self.cash_box,
             self.level_box,
             self.info,
@@ -39,3 +39,4 @@ class UI:
             button.draw()
         for text_box in self.text_boxes:
             text_box.draw()
+        self.health_bar.draw()

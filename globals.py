@@ -33,6 +33,6 @@ MINING_RANGE = 32
 mining_speed = 0.5
 
 mined_resources = 0
-current_player_health = 8
+current_player_health = 3
 
 shop_active = False

@@ -26,3 +26,6 @@ BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 # player properties
 MIN_DISTANCE_TO_CURSOR = 48
 MAX_PLAYER_SPEED = 5
+current_player_health = 8
+
+shop_active = False

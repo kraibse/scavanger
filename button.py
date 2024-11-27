@@ -5,6 +5,7 @@
 #-------------------------------------------------------------------------------
 
 import pygame
+import button_event
 
 class Button:
     def __init__(self,screen,x,y,image_normal,image_hover,text='',scale=1,action='') -> None:
@@ -60,7 +61,7 @@ class Button:
     
     def button_action(self):
         match self.action:
-            case 'open_shop':
-                print('open_shop') #TODO implement in shop class 
+            case 'toggle_shop':
+                button_event.toggle_shop()
             case _:
                 print('no method') #TODO delete after test

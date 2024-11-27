@@ -62,9 +62,7 @@ class Scene:
         self.player.draw()
         
         self.ui.draw()
-
-        if shop_active:
-            self.shop.draw()
+        self.shop.draw()
         
     def spawn_enemies(self):
         return []

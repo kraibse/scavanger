@@ -1,6 +1,6 @@
 '''
 @author: Marcus Schmidt
-@version: 2.0
+@version: 3.0
 
 @datum: 2024-11-26
 
@@ -17,10 +17,7 @@ from health_bar import HealthBar
 class UI:
     def __init__(self,screen) -> None:
         self.screen = screen
-        image_button_normal = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Normal.png').convert_alpha()
-        image_button_hover = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Button Hover.png').convert_alpha()
         image_main_menu = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/main_menu.png').convert_alpha()
-        self.shop_button = Button(self.screen,SCREEN_W//2,SCREEN_H-30,image_button_normal,image_button_hover,text='Shop',action='toggle_shop')
         self.main_menu_button = Button(self.screen,SCREEN_W-30,30,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
         self.level_box = TextBox(self.screen,20,SCREEN_H-50,f'Level: _')
         self.cash_box = TextBox(self.screen,20,60,f'Cash: _',dynamic_text='mined_resources')
@@ -28,7 +25,6 @@ class UI:
 
         self.health_bar = HealthBar(self.screen,20,20)
         self.buttons = [
-            self.shop_button,
             self.main_menu_button,
         ]
         self.text_boxes = [

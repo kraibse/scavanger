@@ -21,6 +21,9 @@ MAP_Y1 = SCREEN_H * 2
 camera_offset_x = 0
 camera_offset_y = 0
 
+# planet config
+PLANET_TYPES = ["Snow White", "Endor", "Mars", "Earth"]
+
 BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 
 # player properties

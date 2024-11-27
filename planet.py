@@ -63,7 +63,7 @@ class Planet(Scavengeable):
         self.resourceDrops = amount
         
     def set_type(self, planet_type):
-        if planet_type == "Baren":
-            self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/Baren/', '', 60, '.png')    
+        if planet_type in globals.PLANER_TYPES:
+            self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/Baren/', 'tile0', 60, '.png')    
         else:
             self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/', planet_type, 1, '.png')

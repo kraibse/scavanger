@@ -1,8 +1,11 @@
-#-------------------------------------------------------------------------------
-# Author:      schmmar1857
-# Created:     29.11.2024
-# Version:     2
-#-------------------------------------------------------------------------------
+'''
+@author: Marcus Schmidt
+@version: 2.0
+
+@datum: 2024-11-29
+
+@description: Klasse für die Lebensleiste 
+'''
 
 import pygame
 

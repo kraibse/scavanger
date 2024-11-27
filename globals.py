@@ -1,5 +1,5 @@
 '''
-@author: Leon Horn
+@author: Leon Horn, Marcus Schmidt
 @version: 1.0
 
 @datum: 2024-11-26
@@ -34,5 +34,4 @@ mining_speed = 0.5
 
 mined_resources = 0
 current_player_health = 3
-
 shop_active = False

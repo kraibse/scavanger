@@ -1,7 +1,11 @@
-#-------------------------------------------------------------------------------
-# Author:      schmmar1857
-# Created:     22.11.2024
-#-------------------------------------------------------------------------------
+'''
+@author: Marcus Schmidt
+@version: 1.0
+
+@datum: 2024-11-22
+
+@description: Klassen zum Managen des aktuellen Levels/Scene
+'''
 
 class SceneManager():
     def __init__(self,screen,scene):

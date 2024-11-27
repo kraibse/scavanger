@@ -1,8 +1,11 @@
-#-------------------------------------------------------------------------------
-# Author:      schmmar1857
-# Created:     26.11.2024
-# Version:     2
-#-------------------------------------------------------------------------------
+'''
+@author: Marcus Schmidt
+@version: 2.0
+
+@datum: 2024-11-26
+
+@description: Klasse zum Nutzen von diversen TextBoxen
+'''
 
 import pygame
 import globals

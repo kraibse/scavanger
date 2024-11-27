@@ -1,8 +1,11 @@
-#-------------------------------------------------------------------------------
-# Author:      schmmar1857
-# Created:     22.11.2024
-# Version:     4
-#-------------------------------------------------------------------------------
+'''
+@author: Marcus Schmidt
+@version: 4.0
+
+@datum: 2024-11-22
+
+@description: Klassen für die jeweiligen Levels
+'''
 
 import pygame
 import os

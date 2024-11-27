@@ -1,4 +1,4 @@
-# scavanger
+# Scavanger - Space Miner
 
 Das Spiel Scavanger ist ein rundenbasiertes Abbauspiel im Weltraum.
 Ein Raumschiff bewegt sich durch ein Feld von Planeten und Asteroiden und baut Ressourcen ab, um sich weiterzuentwickeln und weitere Regionen zu erkunden.
@@ -14,6 +14,11 @@ Ein Raumschiff bewegt sich durch ein Feld von Planeten und Asteroiden und baut R
 - Es werden Ressourcen durch den Abbau von Planeten aufgenommen
 - Im Shop werden Upgrades gekauft, um die Überlebenschancen in den Regionen zu erhöhen
 - Alle Regionen erkunden und das Spiel gewinnen
+
+**Wie startet man das Spiel?**
+
+- Voraussetzungen installieren `python -m pip install -r requirements.txt`
+- Startdatei ausführen `python start_scavanger.py`
 
 
 ## Tag 1 - 2024-11-22

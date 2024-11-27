@@ -17,6 +17,8 @@ class SpriteAnimation():
         self.file_prefix = file_prefix
         self.animation_length = animation_length
         self.file_ext = file_ext
+        
+        self.clock = pygame.time.Clock()
 
         if self.frames is None:
             self.frames = []
@@ -39,19 +41,19 @@ class SpriteAnimation():
             self.dt = 0
             self.active_frame = (self.active_frame + 1) % len(self.frames)
         else:
-            self.dt += 1        
+            self.dt += self.clock.tick(60)    
         
         sprite = self.frames[self.active_frame]
         return sprite
 
     def _get_frames(self):
-        for f in range(self.animation_length + 1):
+        for f in range(self.animation_length):
             target_path = self.base_path + self.file_prefix + str(f) + self.file_ext    # path/to/asset/prefix0.jpg
             if os.path.isfile(target_path):
                 print(target_path)
                 frame = pygame.image.load(target_path).convert_alpha()
                 self.frames.append(frame)
-                
+
         print(self.frames)
 
     def play(self):

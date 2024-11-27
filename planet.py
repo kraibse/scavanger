@@ -32,11 +32,16 @@ class Planet(Scavengeable):
         
     def get_current_sprite(self):
         # self.animation._get_current_sprite()
+        if self.animation and self.animation is not None:
+            return self.animation._get_current_sprite()
+
         return self.current_sprite
         
     def set_position(self, x, y):
         self.position = [x, y]
         
     def set_type(self, planet_type):
-        sprite_path = BASE_PATH + 'assets/planets/' + planet_type + '.png'
-        self.current_sprite = pygame.image.load(sprite_path).convert_alpha()
+        if planet_type == "Baren":
+            self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/Baren/', '', 60, '.png')    
+        else:
+            self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/', planet_type, 1, '.png')

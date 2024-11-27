@@ -81,7 +81,6 @@ class Player():
         if distance <= MIN_DISTANCE_TO_CURSOR:
             return
 
-        # TODO: accelerate and deccelerate smoothly
         motion = [mx / distance * MAX_PLAYER_SPEED, my / distance * MAX_PLAYER_SPEED]    # move the player at a constant speed for now
 
         if self.is_accelerating():

@@ -63,7 +63,7 @@ class Scene:
             ry = random.randint(MAP_Y0, MAP_Y1)
             
             new_planet = Planet(self.screen, 100, random.randint(3, 20))
-            new_planet.set_type("Lava")
+            new_planet.set_type(random.choice(["Lava", "Baren"]))
             new_planet.set_position(rx, ry)
             self.planets.append(new_planet)
         

@@ -37,11 +37,16 @@ class Scene:
     
     def run(self):
         self.draw()
+        
+    def destroy_planet(self, planet):
+        self.planets.remove(planet)
 
     def draw(self):
         self.screen.blit(self.background,(0,0))
 
         for planet in self.planets:
+            if self.player.is_colliding(planet):
+                print("Player is colliding with the planet")
             planet.draw()
 
         for enemy in self.enemies:

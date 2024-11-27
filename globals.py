@@ -26,3 +26,7 @@ BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 # player properties
 MIN_DISTANCE_TO_CURSOR = 48
 MAX_PLAYER_SPEED = 5
+MINING_RANGE = 32
+mining_speed = 0.5
+
+mined_resources = 0

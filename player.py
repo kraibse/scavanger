@@ -89,7 +89,7 @@ class Player():
             globals.camera_offset_x += motion[0]
             globals.camera_offset_y += motion[1]
             
-            print(globals.camera_offset_x, globals.camera_offset_y)
+            # print(globals.camera_offset_x, globals.camera_offset_y)
 
 
     def mine(self):

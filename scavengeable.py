@@ -1,3 +1,12 @@
+'''
+@author: Lucian Kath
+@version: 1.0
+
+@datum: 2024-11-22
+
+@description: Basisklasse der abbaubaren Spielelemente 
+'''
+
 class Scavengeable:
     def __init__(self, screen, maxDurability : int, resourceDrops : int):
         self.screen = screen

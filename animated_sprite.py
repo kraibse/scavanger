@@ -1,3 +1,12 @@
+'''
+@author: Leon Horn
+@version: 1.0
+
+@datum: 2024-11-26
+
+@description: Klasse zur Darstellung und dem Animieren von Sprites
+'''
+
 import os
 import asyncio
 import pygame

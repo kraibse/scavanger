@@ -1,3 +1,12 @@
+'''
+@author: Lucian Kath, Leon Horn
+@version: 1.2
+
+@datum: 2024-11-26
+
+@description: Klasse zur Darstellung und dem Umgang mit Planeten und den verschiedenen Typen
+'''
+
 import pygame
 
 import globals

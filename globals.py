@@ -1,3 +1,12 @@
+'''
+@author: Leon Horn
+@version: 1.0
+
+@datum: 2024-11-26
+
+@description: Global zugängliche Variablen und Konstanten, die im Spielverlauf angepasst und abgefragt werden
+'''
+
 import os
 
 SCREEN_W = 1000

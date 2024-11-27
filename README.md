@@ -36,7 +36,8 @@ Leon Horn
 
 Marcus Schmidt
 - Datei zum Starten des Spiels
-- ...
+- Scene Manager
+- Erstellung des Level Grundgerüsts
 
 Lucian Kath
 - Basisklasse der abbaubaren Spielobjekten
@@ -55,7 +56,9 @@ Leon Horn
 - Anpassungen an den Animationen
 
 Marcus Schmidt
-- ...
+- TextBoxen, Buttons
+- Level UI
+- Bugfixing, Implementierung der UI
 
 Lucian Kath (krank)
 
@@ -77,6 +80,7 @@ Marcus Schmidt
 - Implementierung des Shopsystems
 - Levelwechsel
 - Spielerupgrades
+- Health Bar überarbeiten
 
 Lucian Kath (krank)
 

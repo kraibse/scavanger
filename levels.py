@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # Author:      schmmar1857
 # Created:     22.11.2024
-# Version:     3
+# Version:     4
 #-------------------------------------------------------------------------------
 
 import pygame
@@ -11,6 +11,7 @@ import random
 from player import Player
 from planet import Planet
 from ui import UI
+from shop import Shop
 
 from globals import *
 
@@ -29,6 +30,7 @@ class Scene:
         self.widht = self.background.get_width()
         self.height = self.background.get_height()
         self.enemies = self.spawn_enemies()
+        self.shop = Shop(self.screen)
         
         self.spawn_planets()
         
@@ -42,6 +44,7 @@ class Scene:
         self.planets.remove(planet)
 
     def draw(self):
+        global shop_active
         self.screen.blit(self.background,(0,0))
 
         for planet in self.planets:
@@ -56,6 +59,9 @@ class Scene:
         self.player.draw()
         
         self.ui.draw()
+
+        if shop_active:
+            self.shop.draw()
         
     def spawn_enemies(self):
         return []
@@ -95,4 +101,3 @@ class Level2(Scene):
     
     def spawn_enemies(self):
         return []
-    

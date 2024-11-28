@@ -8,41 +8,40 @@
 '''
 
 import pygame
+import math
 
 import globals
 from globals import *
 from scavengeable import Scavengeable
 from animated_sprite import SpriteAnimation
 
-class Planet(Scavengeable):
+class Planet(Scavengeable):    
     def __init__(self, screen, maxDurability, resourceDrops):
         super().__init__(screen, maxDurability, resourceDrops)
         
         self.screen = screen
         self.position = [0, 0]
         self.radius = 48
+        self.scaled_sprite = None
         
         # self.animation = SpriteAnimation(BASE_PATH, 'Lava', 1, '.png')
         
     def draw(self):
-        current_sprite = self.get_current_sprite()
+        scaled_sprite = self.get_scaled_sprite()        
         
-        if current_sprite is None:
+        if scaled_sprite is None:
             return
         
-        # Scaling the planet according to the resource drops
-        sx = current_sprite.get_width() + 5 * self.resourceDrops
-        sy = current_sprite.get_height() + 5 * self.resourceDrops
-        scaled_sprite = pygame.transform.scale(current_sprite, (sx, sy))
-        self.radius = sx / 2
-        
-        offset_x = self.position[0] - globals.camera_offset_x
-        offset_y = self.position[1] - globals.camera_offset_y
+        offset_x = self.position[0] - globals.camera_offset_x - self.radius
+        offset_y = self.position[1] - globals.camera_offset_y - self.radius
         
         self.screen.blit(scaled_sprite, (offset_x, offset_y))
     
+    def get_center(self) -> tuple:
+        return self.get_center_rect().center
+    
     def get_center_rect(self):
-        center_rect = self.animation._get_current_sprite().get_rect(center=(self.position[0], self.position[1]))
+        center_rect = self.get_current_sprite().get_rect()
         return center_rect
     
     def get_current_sprite(self):
@@ -51,7 +50,18 @@ class Planet(Scavengeable):
             return self.animation._get_current_sprite()
 
         return self.current_sprite
+    
+    def get_scaled_sprite(self):
+        sprite = self.get_current_sprite()
         
+        # Scaling the planet according to the resource drops
+        sx = sprite.get_width() + 5 * self.resourceDrops
+        sy = sprite.get_height() + 5 * self.resourceDrops
+        
+        self.radius = math.floor(sx / 2)
+        self.scaled_sprite = pygame.transform.scale(sprite, (sx, sy))
+        
+        return self.scaled_sprite
     
     def get_remaining_resources(self):
         return self.resourceDrops

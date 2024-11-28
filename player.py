@@ -73,7 +73,7 @@ class Player():
             if planet is None:
                 continue
             
-            # planet_rect = planet.get_center_rect()
+            # planet_rect = planet.get_current_sprite().get_rect().center
             planetx = planet.position[0] - globals.camera_offset_x
             planety = planet.position[1] - globals.camera_offset_y
             distance = self.get_player_distance_to(planetx, planety)
@@ -82,7 +82,6 @@ class Player():
             blip_position = player_position.move_towards(pygame.math.Vector2(planetx, planety), globals.MINING_RANGE)
             
             pygame.draw.circle(self.level.screen, pygame.Color(255, 220, 0, a=100), blip_position, 5)
-
 
     def get_current_animation(self):
         return self.animations.get(self.current_animation)

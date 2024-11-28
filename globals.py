@@ -29,13 +29,21 @@ BASE_PATH = os.path.dirname(os.path.abspath(__file__)) + '/'
 # player properties
 MIN_DISTANCE_TO_CURSOR = 48
 MAX_PLAYER_SPEED = 5
-MINING_RANGE = 32
+mining_range = 32
 mining_speed = 0.5
-
-mined_resources = 0
 current_player_health = 3
-shop_active = False
+
+# score 
+mined_resources = 0
+
+# level
 current_scene = 'Level 1'
+
+# shop
+shop_active = False
+current_resouces = 0
+upgrade_health_price = 50
+upgrade_range_price = 50
 
 # Asteroid properties
 asteroid_types = ['asteroid-01', 'asteroid-02', 'asteroid-03']

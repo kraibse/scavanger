@@ -63,7 +63,7 @@ class Player():
         sprite_rect = rotated_sprite.get_rect(center=(self.position[0], self.position[1]))
         
         # draw mining range
-        self.mining_area = pygame.draw.circle(self.level.screen, pygame.Color(255, 220, 0, a=100), self.get_center_rect().center, globals.MINING_RANGE, width=2)        
+        self.mining_area = pygame.draw.circle(self.level.screen, pygame.Color(255, 220, 0, a=100), self.get_center_rect().center, globals.mining_range, width=2)        
         
         # draw planet radar
         self.draw_planet_radar()
@@ -81,7 +81,7 @@ class Player():
             distance = self.get_player_distance_to(planetx, planety)
             
             player_position = pygame.math.Vector2(self.position[0], self.position[1])
-            blip_position = player_position.move_towards(pygame.math.Vector2(planetx, planety), globals.MINING_RANGE)
+            blip_position = player_position.move_towards(pygame.math.Vector2(planetx, planety), globals.mining_range)
             
             pygame.draw.circle(self.level.screen, pygame.Color(255, 220, 0, a=100), blip_position, 5)
 
@@ -103,7 +103,7 @@ class Player():
         planety = planet.position[1] - globals.camera_offset_y
         distance = self.get_player_distance_to(planetx, planety)
         
-        if distance > globals.MINING_RANGE + planet.radius:
+        if distance > globals.mining_range + planet.radius:
             return False
         
         # print(f"Distance to planet: {distance}, mining range: {globals.MINING_RANGE}, planet radius: {planet.radius}")
@@ -149,6 +149,7 @@ class Player():
 
         if self.dt > globals.mining_speed:
             globals.mined_resources += 1
+            globals.current_resouces += 1
             planet.set_remaining_resources(remaining_resources - 1)
             self.dt = 0
         else:

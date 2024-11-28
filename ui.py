@@ -22,7 +22,7 @@ class UI:
 
         self.main_menu_button = Button(self.screen,SCREEN_W-30,SCREEN_H*0.05,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
         self.resource_button = Button(self.screen,SCREEN_W*0.04,SCREEN_H*0.133,image_resources,image_resources,scale=0.08)
-        self.resource_box = TextBox(self.screen,SCREEN_W*0.07,SCREEN_H*0.133,'',dynamic_text='mined_resources')
+        self.resource_box = TextBox(self.screen,SCREEN_W*0.07,SCREEN_H*0.133,'',dynamic_text='current_resources')
         self.level_box = TextBox(self.screen,SCREEN_W*0.02,SCREEN_H-SCREEN_H*0.05,'',dynamic_text='level')
         self.info = TextBox(self.screen,SCREEN_W-SCREEN_W*0.11,SCREEN_H-SCREEN_H*0.033,'Hold space to move...',15)
 

@@ -38,7 +38,7 @@ class Button:
             self.set_image(self.image_hover)
             if pygame.mouse.get_pressed()[0] and not self.clicked:
                 self.clicked = True
-                self.button_action()
+                self.handle_button_action()
         else:
             self.set_image(self.image_normal)
 
@@ -71,13 +71,17 @@ class Button:
     def move_to(self,x,y):
         self.rect.center = (x,y)
     
-    def button_action(self):
+    def handle_button_action(self):
         match self.action:
             case 'toggle_shop':
                 button_event.toggle_shop()
+            case 'buy_health_price':
+                button_event.buy_health()
+            case 'buy_range_price':
+                button_event.buy_range()
             case 'set_level1':
                 button_event.set_scene('Level 1')
             case 'set_level2':
                 button_event.set_scene('Level 2')
             case _:
-                print('no method') #TODO delete after test
+                print('no method') #for not yet implemented button actions

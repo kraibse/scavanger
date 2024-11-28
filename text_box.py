@@ -30,6 +30,12 @@ class TextBox:
         match self.dynamic_text:
             case 'mined_resources':
                 return str(globals.mined_resources)
+            case 'current_resources':
+                return str(globals.current_resouces)
+            case 'health_price':
+                return str(globals.upgrade_health_price)
+            case 'range_price':
+                return str(globals.upgrade_range_price)
             case 'level':
                 return str(globals.current_scene)
             case _:

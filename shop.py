@@ -23,8 +23,8 @@ class Shop:
         self.shop_button = Button(self.surface,SCREEN_W//2,SCREEN_H-30,text='Shop',action='toggle_shop')
         self.shop_title = TextBox(self.surface,SCREEN_W//2,SCREEN_H//2,'Shop',50)
 
-        self.health_upgrade = ShopElement(self.surface,SCREEN_W//2,SCREEN_H*0.7,'+1 Health',image_health,'health',10)
-        self.speed_upgrade = ShopElement(self.surface,SCREEN_W//2,SCREEN_H*0.8,'+1 Range',image_health,'range',10)
+        self.health_upgrade = ShopElement(self.surface,SCREEN_W//2,SCREEN_H*0.7,'+1 Health',image_health,'health_price')
+        self.speed_upgrade = ShopElement(self.surface,SCREEN_W//2,SCREEN_H*0.8,'x2 Range',image_health,'range_price')
 
         self.shop_elements = [
             self.health_upgrade,
@@ -32,6 +32,7 @@ class Shop:
         ]
 
     def draw(self):
+        self.set_current_prices()
         if self.is_visible():
             self.draw_shop_border()
             self.shop_button.move_to(SCREEN_W//2,SCREEN_H*0.6)
@@ -50,25 +51,27 @@ class Shop:
         pygame.draw.rect(self.surface,border_color,(int(SCREEN_W/2-rect_width/2)-border_width,SCREEN_H*0.6-border_width,rect_width+border_width*2,rect_height+border_width*2))
         pygame.draw.rect(self.surface,'black',(int(SCREEN_W/2-rect_width/2),SCREEN_H*0.6,rect_width,rect_height))
 
-
     def is_visible(self):
         return globals.shop_active
 
+    def set_current_prices(self):
+        globals.upgrade_health_price = globals.current_player_health*10
+        globals.upgrade_range_price = globals.mining_range*1
+
 class ShopElement:
-    def __init__(self,surface,x,y,text,item_image,item,price) -> None:
+    def __init__(self,surface,x,y,info_text,item_image,dynamic_text) -> None:
         self.surface = surface
         image_resources = pygame.image.load(os.path.normpath(BASE_PATH + 'assets/ore/Ore_Copper_2.png')).convert_alpha()
         image_resources = pygame.transform.scale(image_resources,(30,30))
         self.x = x
         self.y = y
-        self.text = text
+        self.info_text = info_text
         self.item_image = item_image
-        self.price = price
         self.item_icon = Button(self.surface,self.x-SCREEN_W*0.2,self.y,image_normal=self.item_image,image_hover=self.item_image)
         self.resource_icon = Button(self.surface,self.x-SCREEN_W*0.13,self.y,image_normal=image_resources,image_hover=image_resources)
-        self.resource_price_text_box = TextBox(self.surface,self.x-SCREEN_W*0.1,self.y,'50',font_size=20)
-        self.description_text_box = TextBox(self.surface,self.x,self.y,text,font_size=20)
-        self.buy_button = Button(self.surface,self.x+SCREEN_W*0.15,self.y,text='Buy',action=f'buy_{item}')
+        self.resource_price_text_box = TextBox(self.surface,self.x-SCREEN_W*0.1,self.y,'0',dynamic_text=dynamic_text,font_size=20)
+        self.description_text_box = TextBox(self.surface,self.x,self.y,info_text,font_size=20)
+        self.buy_button = Button(self.surface,self.x+SCREEN_W*0.15,self.y,text='Buy',action=f'buy_{dynamic_text}')
     
     def draw(self):
         self.draw_element_border()

@@ -70,7 +70,7 @@ class Scene:
             distance = asteroid_position.distance_to(player_position)
             
             is_asteroid_colliding = False
-            if distance < globals.MINING_RANGE + asteroid.size:
+            if distance < globals.mining_range + asteroid.size:
                 is_asteroid_colliding = True # asteroid.is_colliding(self.player)
     
             if is_asteroid_colliding:

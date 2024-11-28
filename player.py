@@ -43,7 +43,10 @@ class Player():
         
         self.current_animation = new_anim
         asyncio.run(animation.play())
-        
+    
+    def damage(self):
+        globals.current_player_health -= 1
+    
     def draw(self):
         current_sprite = self.get_current_animation()._get_current_sprite()
         

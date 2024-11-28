@@ -13,9 +13,11 @@ import random
 
 from player import Player
 from planet import Planet
+from asteroids import Asteroid
 from ui import UI
 from shop import Shop
 
+import globals
 from globals import *
 
 class Scene:
@@ -36,6 +38,7 @@ class Scene:
         self.shop = Shop(self.screen)
         
         self.spawn_planets()
+        self.spawn_asteroids()
         
         self.ui = UI(self.screen)
         self.player = Player(self)
@@ -55,15 +58,47 @@ class Scene:
                 self.player.mine(planet)
                 
             planet.draw()
+            
+        for asteroid in self.asteroids:
+            # if asteroid is too far from the player, reset position and direction
+            ax = asteroid.position[0] - globals.camera_offset_x
+            ay = asteroid.position[1] - globals.camera_offset_y
+            asteroid_position = pygame.Vector2(ax, ay)
+            
+            player_position = pygame.Vector2(self.player.position[0], self.player.position[1])
+            
+            distance = asteroid_position.distance_to(player_position)
+            
+            is_asteroid_colliding = False
+            if distance < globals.MINING_RANGE + asteroid.size:
+                is_asteroid_colliding = True # asteroid.is_colliding(self.player)
+    
+            if is_asteroid_colliding:
+                self.player.damage()
+
+            if is_asteroid_colliding or distance > ASTEROID_DECAY_DISTANCE:
+                asteroid.randomize_position()
+                asteroid.randomize_direction()
+
+            asteroid.move()
+            asteroid.draw()
 
         for enemy in self.enemies:
             enemy.draw()
 
-        self.player.move()
-        self.player.draw()
+        if (globals.current_player_health > 0):
+            self.player.move()
+            self.player.draw()
         
         self.ui.draw()
         self.shop.draw()
+        
+    def spawn_asteroids(self):
+        self.asteroids = []
+        
+        for a in range(self.total_asteroids):
+            asteroid = Asteroid(self.screen, 100, random.randint(30, 200))
+            self.asteroids.append(asteroid)
         
     def spawn_enemies(self):
         return []
@@ -85,9 +120,10 @@ class Scene:
 
 class Level1(Scene):
     def __init__(self, screen, scene_manager) -> None:
-        total_planets = 5
+        self.total_planets = 5
+        self.total_asteroids = 10
         
-        super().__init__(screen, scene_manager, total_planets)
+        super().__init__(screen, scene_manager, self.total_planets)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL1).convert_alpha()
     
     def spawn_enemies(self):
@@ -96,9 +132,10 @@ class Level1(Scene):
 
 class Level2(Scene):
     def __init__(self, screen, scene_manager) -> None:
-        total_planets = 10
+        self.total_planets = 10
+        self.total_asteroids = 20
         
-        super().__init__(screen, scene_manager, total_planets)
+        super().__init__(screen, scene_manager, self.total_planets)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()
     
     def spawn_enemies(self):

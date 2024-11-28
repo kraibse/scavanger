@@ -36,3 +36,9 @@ mined_resources = 0
 current_player_health = 3
 shop_active = False
 current_scene = 'Level 1'
+
+# Asteroid properties
+asteroid_types = ['asteroid-01', 'asteroid-02', 'asteroid-03']
+ASTEROID_MIN_SPAWN_DISTANCE = 600
+ASTEROID_MAX_SPAWN_DISTANCE = 800
+ASTEROID_DECAY_DISTANCE = 1000

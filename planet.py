@@ -1,6 +1,6 @@
 '''
-@author: Lucian Kath, Leon Horn
-@version: 1.2
+@author: Leon Horn
+@version: 1.4
 
 @datum: 2024-11-26
 

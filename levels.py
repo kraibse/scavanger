@@ -19,11 +19,11 @@ from shop import Shop
 from globals import *
 
 class Scene:
-    PATH_PLACEHOLDER_BACKGROUND = BASE_PATH + 'assets/background/placeholder_background.png'
-    PATH_PLACEHOLDER_BACKGROUND2 = BASE_PATH + 'assets/background/placeholder_background2.png'
-    PATH_BACKGROUND_LEVEL1 = BASE_PATH + 'assets/background/purple_nebula_background.png'
-    PATH_BACKGROUND_LEVEL2 = BASE_PATH + 'assets/background/Green_Nebula_07-1024x1024.png'
-    IMAGE_PLAY_BUTTON = BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Default.png'
+    PATH_PLACEHOLDER_BACKGROUND = os.path.normpath(BASE_PATH + 'assets/background/placeholder_background.png')
+    PATH_PLACEHOLDER_BACKGROUND2 = os.path.normpath(BASE_PATH + 'assets/background/placeholder_background2.png')
+    PATH_BACKGROUND_LEVEL1 = os.path.normpath(BASE_PATH + 'assets/background/purple_nebula_background.png')
+    PATH_BACKGROUND_LEVEL2 = os.path.normpath(BASE_PATH + 'assets/background/Green_Nebula_07-1024x1024.png')
+    IMAGE_PLAY_BUTTON = os.path.normpath(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Default.png')
 
     def __init__(self,screen,scene_manager, total_planets) -> None:
         self.screen = screen
@@ -52,7 +52,8 @@ class Scene:
 
         for planet in self.planets:
             if self.player.is_colliding(planet):
-                print("Player is colliding with the planet")
+                self.player.mine(planet)
+                
             planet.draw()
 
         for enemy in self.enemies:

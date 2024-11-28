@@ -27,7 +27,6 @@ class Player():
         
         self.position = [math.floor(w / 2), math.floor(h / 2)]
         base_path = os.path.dirname(os.path.abspath(__file__)) + '/assets/sprites/player/'
-        print(base_path)
         
         self.animations = {
             "idle": SpriteAnimation(base_path, 'player0', 1)
@@ -105,8 +104,7 @@ class Player():
             return False
         
         # print(f"Distance to planet: {distance}, mining range: {globals.MINING_RANGE}, planet radius: {planet.radius}")
-        self.mine(planet)
-        return self.get_center_rect().colliderect(planet.get_center_rect())
+        return True
 
     def get_center_rect(self):
         center_rect = self.get_current_animation()._get_current_sprite().get_rect(center=(self.position[0], self.position[1]))
@@ -145,8 +143,6 @@ class Player():
         if remaining_resources <= 0:
             self.level.destroy_planet(planet)
             return
-
-        print("Mining the planet with " + str(remaining_resources) + " resources left")
 
         if self.dt > globals.mining_speed:
             globals.mined_resources += 1

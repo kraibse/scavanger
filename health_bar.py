@@ -13,7 +13,7 @@ import globals
 
 class HealthBar:
     def __init__(self,surface,x,y) -> None:
-        image_heart = pygame.image.load(globals.BASE_PATH + 'assets\sprites\health\HeartsFrame1.png').convert_alpha()
+        image_heart = pygame.image.load(globals.BASE_PATH + 'assets/sprites/health/HeartsFrame1.png').convert_alpha()
         self.image_heart_full = pygame.transform.scale2x(image_heart)
         self.image_width = self.image_heart_full.get_width()
         self.surface = surface

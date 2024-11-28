@@ -36,7 +36,7 @@ class TextBox:
                 return str(globals.upgrade_health_price)
             case 'range_price':
                 return str(globals.upgrade_range_price)
-            case 'level':
+            case 'current_scene':
                 return str(globals.current_scene)
             case _:
                 return self.text

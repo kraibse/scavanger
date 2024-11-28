@@ -79,6 +79,8 @@ class Button:
                 button_event.buy_health()
             case 'buy_range_price':
                 button_event.buy_range()
+            case 'set_main_menu':
+                button_event.set_scene('MainMenu')
             case 'set_level1':
                 button_event.set_scene('Level 1')
             case 'set_level2':

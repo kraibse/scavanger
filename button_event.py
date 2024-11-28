@@ -19,10 +19,10 @@ def set_scene(scene):
 
 def buy_health():
     if globals.current_resouces >= globals.upgrade_health_price:
-        globals.current_player_health += 1
         globals.current_resouces -= globals.upgrade_health_price
+        globals.current_player_health += 1
 
 def buy_range():
     if globals.current_resouces >= globals.upgrade_range_price:
-        globals.mining_range *= 2
         globals.current_resouces -= globals.upgrade_range_price
+        globals.mining_range *= 2

@@ -12,7 +12,9 @@ import asyncio
 
 from scene_manager import SceneManager
 from levels import Level1, Level2
+from main_menu import MainMenu
 from globals import SCREEN_W,SCREEN_H
+import globals
 
 class Game:
     FPS = 60
@@ -24,15 +26,18 @@ class Game:
         self.clock = pygame.time.Clock()
         self.is_running = True
         self.scene_manager = SceneManager(self.screen)
-        self.level1 = Level1(self.screen,self.scene_manager)
-        self.level2 = Level2(self.screen,self.scene_manager)
-        self.scenes = {'Level 1': self.level1,'Level 2':self.level2}
+        self.main_menu = MainMenu(self.screen,self.scene_manager)
     
     def run(self):
         while self.is_running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.is_running = False
+            if globals.init_all_scenes:
+                self.level1 = Level1(self.screen,self.scene_manager)
+                self.level2 = Level2(self.screen,self.scene_manager)
+                self.scenes = {'MainMenu':self.main_menu,'Level 1': self.level1,'Level 2':self.level2}
+                globals.init_all_scenes = False
             self.scenes[self.scene_manager.get_current_scene()].run()
             pygame.display.update()
             self.clock.tick(Game.FPS)

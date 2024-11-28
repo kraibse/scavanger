@@ -37,7 +37,8 @@ current_player_health = 3
 mined_resources = 0
 
 # level
-current_scene = 'Level 1'
+current_scene = 'MainMenu' #'MainMenu'|'Level 1'|'Level 2'
+init_all_scenes = True
 
 # shop
 shop_active = False

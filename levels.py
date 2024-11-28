@@ -27,21 +27,15 @@ class Scene:
     PATH_BACKGROUND_LEVEL2 = os.path.normpath(BASE_PATH + 'assets/background/Green_Nebula_07-1024x1024.png')
     IMAGE_PLAY_BUTTON = os.path.normpath(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/Default.png')
 
-    def __init__(self,screen,scene_manager, total_planets) -> None:
+    def __init__(self,screen,scene_manager) -> None:
         self.screen = screen
         self.scene_manager = scene_manager
-        self.total_planets = total_planets
-        self.background = pygame.image.load(Scene.PATH_PLACEHOLDER_BACKGROUND).convert_alpha()
+        background = pygame.image.load(Scene.PATH_PLACEHOLDER_BACKGROUND).convert_alpha()
+        self.background = pygame.transform.scale(background,(SCREEN_W,SCREEN_H))
         self.widht = self.background.get_width()
         self.height = self.background.get_height()
-        self.enemies = self.spawn_enemies()
-        self.shop = Shop(self.screen)
-        
-        self.spawn_planets()
-        self.spawn_asteroids()
-        
+        self.shop = Shop(self.screen)     
         self.ui = UI(self.screen)
-        self.player = Player(self)
     
     def run(self):
         self.draw()
@@ -50,8 +44,20 @@ class Scene:
         self.planets.remove(planet)
 
     def draw(self):
-        global shop_active
         self.screen.blit(self.background,(0,0))
+
+class Level(Scene):
+    def __init__(self, screen, scene_manager, total_planets, total_asteroids) -> None:
+        super().__init__(screen, scene_manager)
+        self.total_planets = total_planets
+        self.total_asteroids = total_asteroids
+        self.enemies = self.spawn_enemies()
+        self.spawn_planets()
+        self.spawn_asteroids()
+        self.player = Player(self)
+    
+    def draw(self):
+        super().draw()
 
         for planet in self.planets:
             if self.player.is_colliding(planet):
@@ -117,25 +123,22 @@ class Scene:
         
         return self.planets
 
-
-class Level1(Scene):
+class Level1(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 5
         self.total_asteroids = 10
-        
-        super().__init__(screen, scene_manager, self.total_planets)
+        super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL1).convert_alpha()
     
     def spawn_enemies(self):
         return []
 
 
-class Level2(Scene):
+class Level2(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 10
         self.total_asteroids = 20
-        
-        super().__init__(screen, scene_manager, self.total_planets)
+        super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()
     
     def spawn_enemies(self):

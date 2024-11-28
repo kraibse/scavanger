@@ -12,15 +12,15 @@ import asyncio
 
 from scene_manager import SceneManager
 from levels import Level1, Level2
+from globals import SCREEN_W,SCREEN_H
 
 class Game:
-    SCREEN_W, SCREEN_H = 1000,600
     FPS = 60
     
     def __init__(self) -> None:
         pygame.init()
         pygame.display.set_caption('Scavanger')
-        self.screen = pygame.display.set_mode((Game.SCREEN_W,Game.SCREEN_H))
+        self.screen = pygame.display.set_mode((SCREEN_W,SCREEN_H))
         self.clock = pygame.time.Clock()
         self.is_running = True
         self.scene_manager = SceneManager(self.screen)

@@ -68,6 +68,9 @@ class Button:
     def set_image(self, image):
         self.image_current = image
     
+    def move_to(self,x,y):
+        self.rect.center = (x,y)
+    
     def button_action(self):
         match self.action:
             case 'toggle_shop':

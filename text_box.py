@@ -18,7 +18,7 @@ class TextBox:
         self.text = text
         self.font = pygame.font.SysFont("freesans",font_size)
         self.text_surface = self.font.render(self.text,True,'white')
-        self.rect = self.text_surface.get_rect(topleft=(x,y))
+        self.rect = self.text_surface.get_rect(center=(x,y))
         self.dynamic_text = dynamic_text
     
     def draw(self):

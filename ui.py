@@ -20,13 +20,13 @@ class UI:
         image_main_menu = pygame.image.load(os.path.normpath(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/main_menu.png')).convert_alpha()
         image_resources = pygame.image.load(os.path.normpath(BASE_PATH + 'assets/ore/Ore_Copper_2.png')).convert_alpha()
 
-        self.main_menu_button = Button(self.screen,SCREEN_W-30,30,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
-        self.resource_button = Button(self.screen,40,80,image_resources,image_resources,scale=0.08)
-        self.resource_box = TextBox(self.screen,70,65,'',dynamic_text='mined_resources')
-        self.level_box = TextBox(self.screen,20,SCREEN_H-50,'',dynamic_text='level')
-        self.info = TextBox(self.screen,SCREEN_W-150,SCREEN_H-30,'Hold space to move...',15)
+        self.main_menu_button = Button(self.screen,SCREEN_W-30,SCREEN_H*0.05,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
+        self.resource_button = Button(self.screen,SCREEN_W*0.04,SCREEN_H*0.133,image_resources,image_resources,scale=0.08)
+        self.resource_box = TextBox(self.screen,SCREEN_W*0.07,SCREEN_H*0.133,'',dynamic_text='mined_resources')
+        self.level_box = TextBox(self.screen,SCREEN_W*0.02,SCREEN_H-SCREEN_H*0.05,'',dynamic_text='level')
+        self.info = TextBox(self.screen,SCREEN_W-SCREEN_W*0.11,SCREEN_H-SCREEN_H*0.033,'Hold space to move...',15)
 
-        self.health_bar = HealthBar(self.screen,20,20)
+        self.health_bar = HealthBar(self.screen,SCREEN_W*0.02,SCREEN_H*0.033)
         self.buttons = [
             self.main_menu_button,
             self.resource_button,

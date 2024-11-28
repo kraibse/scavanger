@@ -6,7 +6,7 @@
 
 @description: Klasse für die Darstellung des LevelUI's
 '''
-
+import os
 import pygame
 
 from globals import SCREEN_W, SCREEN_H, BASE_PATH
@@ -17,8 +17,8 @@ from health_bar import HealthBar
 class UI:
     def __init__(self,screen) -> None:
         self.screen = screen
-        image_main_menu = pygame.image.load(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/main_menu.png').convert_alpha()
-        image_resources = pygame.image.load(BASE_PATH + 'assets/ore/Ore_Copper_2.png').convert_alpha()
+        image_main_menu = pygame.image.load(os.path.normpath(BASE_PATH + 'assets/buttons/Rect-Medium/PlayIcon/main_menu.png')).convert_alpha()
+        image_resources = pygame.image.load(os.path.normpath(BASE_PATH + 'assets/ore/Ore_Copper_2.png')).convert_alpha()
 
         self.main_menu_button = Button(self.screen,SCREEN_W-30,30,image_main_menu,image_main_menu,scale=1.5,action='main_menu')
         self.resource_button = Button(self.screen,40,80,image_resources,image_resources,scale=0.08)

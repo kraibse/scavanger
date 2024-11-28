@@ -7,13 +7,16 @@
 @description: Klasse für die Lebensleiste 
 '''
 
+import os
 import pygame
 
 import globals
 
 class HealthBar:
     def __init__(self,surface,x,y) -> None:
-        image_heart = pygame.image.load(globals.BASE_PATH + 'assets/sprites/health/HeartsFrame1.png').convert_alpha()
+        path_to_heart = os.path.normpath(globals.BASE_PATH + 'assets/sprites/health/HeartsFrame1.png')
+        image_heart = pygame.image.load(path_to_heart).convert_alpha()
+        
         self.image_heart_full = pygame.transform.scale2x(image_heart)
         self.image_width = self.image_heart_full.get_width()
         self.surface = surface

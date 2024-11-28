@@ -32,8 +32,7 @@ class SpriteAnimation():
         if self.frames is None:
             self.frames = []
 
-        if os.path.isfile(base_path + file_prefix + '0' + file_ext):
-            print("The file was found.")
+        self.check_frame_availability()
         
         self._get_frames()
         self.w = self.frames[0].get_height()
@@ -56,14 +55,21 @@ class SpriteAnimation():
         return sprite
 
     def _get_frames(self):
-        for f in range(self.animation_length):
-            target_path = self.base_path + self.file_prefix + str(f) + self.file_ext    # path/to/asset/prefix0.jpg
-            if os.path.isfile(target_path):
-                print(target_path)
-                frame = pygame.image.load(target_path).convert_alpha()
-                self.frames.append(frame)
+        for i, f in enumerate(os.listdir(self.base_path)):
+            if i < self.animation_length and f.startswith(self.file_prefix):
+                self.frames.append(pygame.image.load(os.path.normpath(self.base_path + f)))
 
-        print(self.frames)
+    def check_frame_availability(self):
+        path_to_frames = os.path.normpath(self.base_path)
+        contents = os.listdir(path_to_frames)
+        
+        if len(contents) == 0:
+            print("The folder '" + path_to_frames + "' is empty.")
+            return
+        
+        path_to_first_frame = os.path.normpath(path_to_frames + '/' + contents[0])
+        if not os.path.isfile(path_to_first_frame):
+            print("The file '" + path_to_first_frame + "' was not found.")
 
     def play(self):
         # run once when the animation of the player or enemy changes

@@ -24,8 +24,6 @@ class Planet(Scavengeable):
         self.radius = 48
         self.scaled_sprite = None
         
-        # self.animation = SpriteAnimation(BASE_PATH, 'Lava', 1, '.png')
-        
     def draw(self):
         scaled_sprite = self.get_scaled_sprite()        
         
@@ -73,7 +71,4 @@ class Planet(Scavengeable):
         self.resourceDrops = amount
         
     def set_type(self, planet_type):
-        if planet_type in globals.PLANET_TYPES:
-            self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/' + planet_type + '/', 'tile0', 60, '.png')    
-        else:
-            self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/', planet_type, 1, '.png')
+        self.animation = SpriteAnimation(BASE_PATH + 'assets/planets/' + planet_type + '/', 'tile0', 60, '.png')    

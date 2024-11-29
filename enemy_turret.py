@@ -9,6 +9,7 @@
 import pygame
 import math
 import globals
+import random
 from animated_sprite import SpriteAnimation
 from scavengeable import Scavengeable
 
@@ -16,7 +17,10 @@ class EnemyTurret(Scavengeable):
     def __init__(self, screen, maxDurability, resourceDrops):
         super().__init__(screen, maxDurability, resourceDrops)
 
-        self.position = [0, 0]
+        rx = random.randint(globals.MAP_X0, globals.MAP_X1)
+        ry = random.randint(globals.MAP_Y0, globals.MAP_Y1)
+
+        self.position = [rx, ry]
         self.animation = SpriteAnimation(globals.BASE_PATH + 'assets/sprites/enemy/turret/', 'turret0', 1, '.png')
         self.sprite = self.animation._get_current_sprite()
 
@@ -24,8 +28,6 @@ class EnemyTurret(Scavengeable):
         offset_x = self.position[0] - globals.camera_offset_x
         offset_y = self.position[1] - globals.camera_offset_y
         self.rect = self.sprite.get_rect(center=(offset_x, offset_y))
-        print(self.rect)
-        print(self.sprite)
         
         self.screen.blit(self.sprite, self.rect)
     

@@ -34,8 +34,6 @@ class EnemyTurret(Scavengeable):
         offset_x = self.position[0] - globals.camera_offset_x
         offset_y = self.position[1] - globals.camera_offset_y
         self.rect = self.sprite.get_rect(center=(offset_x, offset_y))
-        print(self.rect)
-        print(self.sprite)
         
         self.screen.blit(self.sprite, self.rect)
 

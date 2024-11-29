@@ -20,11 +20,11 @@ class EnemyTurret(Scavengeable):
 
         self.position = [0, 0]
         self.projectiles = [
-            Projectile(self),
-            Projectile(self),
-            Projectile(self),
-            Projectile(self),
-            Projectile(self)
+            # Projectile(self),
+            # Projectile(self),
+            # Projectile(self),
+            # Projectile(self),
+            # Projectile(self)
         ]
 
         self.animation = SpriteAnimation(globals.BASE_PATH + 'assets/sprites/enemy/turret/', 'turret0', 1, '.png')
@@ -39,15 +39,15 @@ class EnemyTurret(Scavengeable):
         
         self.screen.blit(self.sprite, self.rect)
 
-        for bullet in self.projectiles:
-            if bullet.is_active and bullet.origin.distance_to(bullet.position) > globals.BULLET_DECAY_DISTANCE:
-                bullet.reset()
-            elif bullet.is_active and bullet.position.distance_to(pygame.Vector2(self.player.position[0], self.player.position[1])):
-                globals.current_player_health -= 1
-                bullet.reset()
-            else:
-                bullet.move()
-                bullet.draw(self.screen)
+        # for bullet in self.projectiles:
+        #     if bullet.is_active and bullet.origin.distance_to(bullet.position) > globals.BULLET_DECAY_DISTANCE:
+        #         bullet.reset()
+        #     elif bullet.is_active and bullet.position.distance_to(pygame.Vector2(self.player.position[0], self.player.position[1])):
+        #         globals.current_player_health -= 1
+        #         bullet.reset()
+        #     else:
+        #         bullet.move()
+        #         bullet.draw(self.screen)
 
     
     def defend(self, player):
@@ -67,6 +67,6 @@ class EnemyTurret(Scavengeable):
             angle = math.degrees(math.atan2(-ry, rx)) - 90
             self.sprite = pygame.transform.rotate(self.animation._get_current_sprite(), angle)
             
-            for b in self.projectiles:
-                if b.is_active == False:
-                    b.shoot_at((self.position[0], self.position[1]), (rx, ry))
+            # for b in self.projectiles:
+            #     if b.is_active == False:
+            #         b.shoot_at((self.position[0], self.position[1]), (rx, ry))

@@ -13,6 +13,7 @@ import pygame
 import math
 
 from animated_sprite import SpriteAnimation
+from shop import Shop
 
 import globals
 from globals import SCREEN_W, SCREEN_H, MIN_DISTANCE_TO_CURSOR, MAX_PLAYER_SPEED
@@ -126,6 +127,9 @@ class Player():
         return distance
 
     def move(self):
+        if self.level.shop.is_visible():
+            return
+        
         self.current_animation = "idle"
 
         mousex, mousey = pygame.mouse.get_pos()

@@ -13,7 +13,7 @@ import pygame
 
 
 class SpriteAnimation():
-    play_speed = 1
+    play_speed = 0.5
 
     active_frame = -1
     frames = None

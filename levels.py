@@ -103,7 +103,7 @@ class Level(Scene):
         self.asteroids = []
         
         for a in range(self.total_asteroids):
-            asteroid = Asteroid(self.screen, 100, random.randint(30, 200))
+            asteroid = Asteroid(self.screen, self, 100, random.randint(30, 200))
             self.asteroids.append(asteroid)
         
     def spawn_enemies(self):

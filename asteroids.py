@@ -13,13 +13,16 @@ import math
 import pygame
 
 from scavengeable import Scavengeable
+from shop import Shop
+
 import globals
 from globals import BASE_PATH, ASTEROID_MAX_SPAWN_DISTANCE, ASTEROID_MIN_SPAWN_DISTANCE
 
 
 class Asteroid(Scavengeable):
-    def __init__(self, screen, maxDurability : int, resourceDrops : int):
+    def __init__(self, screen, level, maxDurability : int, resourceDrops : int):
         super().__init__(screen, maxDurability, resourceDrops)
+        self.level = level
          
         self.randomize_position()
         self.randomize_direction()
@@ -66,6 +69,9 @@ class Asteroid(Scavengeable):
         return self.scaled_sprite
     
     def move(self):
+        if self.level.shop.is_visible():
+            return
+        
         new_x = self.position[0] + self.direction.x * self.movement_speed
         new_y = self.position[1] + self.direction.y * self.movement_speed
         

@@ -48,6 +48,7 @@ class Scene:
     def draw(self):
         self.screen.blit(self.background,(0,0))
 
+
 class Level(Scene):
     def __init__(self, screen, scene_manager, total_planets, total_asteroids, total_enemies) -> None:
         super().__init__(screen, scene_manager)
@@ -155,7 +156,7 @@ class Level1(Level):
 class Level2(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 10
-        self.total_asteroids = 20
+        self.total_asteroids = 50
         self.total_enemies = 5
         super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids, self.total_enemies)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()

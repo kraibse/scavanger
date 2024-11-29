@@ -17,7 +17,7 @@ from enemy_turret import EnemyTurret
 from asteroids import Asteroid
 from ui import UI
 from shop import Shop
-from text_box import TextBox
+from button_event import set_scene
 
 import globals
 from globals import *
@@ -61,11 +61,15 @@ class Level(Scene):
         self.player = Player(self)
         self.transition_counter_current = 0
         self.transition_counter_max = SCREEN_W//2
+        self.next_scene = 'GameWon'
     
     def draw(self):
         if self.transition_counter_current <= self.transition_counter_max:
             self.level_transition()
             return
+        if not self.planets:
+            self.set_next_scene()
+
         super().draw()
         
         for planet in self.planets:
@@ -143,12 +147,16 @@ class Level(Scene):
         self.transition_counter_current += SCREEN_W*0.03
         pygame.draw.circle(self.screen,'black',(SCREEN_W//2,SCREEN_H//2),self.transition_counter_current*2)
 
+    def set_next_scene(self):
+        set_scene(self.next_scene)
+
 class Level1(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 5
         self.total_asteroids = 10
         self.total_enemies = 5
         super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids, self.total_enemies)
+        self.next_scene = 'Level 2'
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL1).convert_alpha()
 
 
@@ -159,4 +167,5 @@ class Level2(Level):
         self.total_asteroids = 50
         self.total_enemies = 5
         super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids, self.total_enemies)
+        self.next_scene = 'GameWon'
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()

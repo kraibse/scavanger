@@ -13,9 +13,11 @@ import random
 
 from player import Player
 from planet import Planet
+from enemy_turret import EnemyTurret
 from asteroids import Asteroid
 from ui import UI
 from shop import Shop
+from text_box import TextBox
 
 import globals
 from globals import *
@@ -46,19 +48,26 @@ class Scene:
     def draw(self):
         self.screen.blit(self.background,(0,0))
 
+
 class Level(Scene):
-    def __init__(self, screen, scene_manager, total_planets, total_asteroids) -> None:
+    def __init__(self, screen, scene_manager, total_planets, total_asteroids, total_enemies) -> None:
         super().__init__(screen, scene_manager)
         self.total_planets = total_planets
         self.total_asteroids = total_asteroids
-        self.enemies = self.spawn_enemies()
+        self.total_enemies = total_enemies
+        self.spawn_enemies()
         self.spawn_planets()
         self.spawn_asteroids()
         self.player = Player(self)
+        self.transition_counter_current = 0
+        self.transition_counter_max = SCREEN_W//2
     
     def draw(self):
+        if self.transition_counter_current <= self.transition_counter_max:
+            self.level_transition()
+            return
         super().draw()
-
+        
         for planet in self.planets:
             if self.player.is_colliding(planet):
                 self.player.mine(planet)
@@ -91,6 +100,7 @@ class Level(Scene):
 
         for enemy in self.enemies:
             enemy.draw()
+            enemy.defend(self.player)
 
         if (globals.current_player_health > 0):
             self.player.move()
@@ -107,7 +117,13 @@ class Level(Scene):
             self.asteroids.append(asteroid)
         
     def spawn_enemies(self):
-        return []
+        self.enemies = []
+
+        for e in range(self.total_enemies):
+            enemy = EnemyTurret(self.screen, 100, random.randint(30, 200))
+            self.enemies.append(enemy)
+        
+        return self.enemies
     
     def spawn_planets(self):
         self.planets = []
@@ -123,23 +139,24 @@ class Level(Scene):
         
         return self.planets
 
+    def level_transition(self):
+        self.transition_counter_current += SCREEN_W*0.03
+        pygame.draw.circle(self.screen,'black',(SCREEN_W//2,SCREEN_H//2),self.transition_counter_current*2)
+
 class Level1(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 5
         self.total_asteroids = 10
-        super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids)
+        self.total_enemies = 5
+        super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids, self.total_enemies)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL1).convert_alpha()
-    
-    def spawn_enemies(self):
-        return []
+
 
 
 class Level2(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 10
         self.total_asteroids = 50
-        super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids)
+        self.total_enemies = 5
+        super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids, self.total_enemies)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()
-    
-    def spawn_enemies(self):
-        return []

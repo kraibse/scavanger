@@ -15,7 +15,7 @@ class SceneManager():
     @classmethod
     def set_scene(self,scene):
         globals.current_scene = scene
-        globals.current_player_health = 3
+        # globals.current_player_health = 3
         globals.init_all_scenes = True
 
     @classmethod

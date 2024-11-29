@@ -36,6 +36,8 @@ class Player():
         
         self.clock = pygame.time.Clock()
         self.dt = 0
+        
+        self.size = self.get_current_animation()._get_current_sprite().get_width()
 
     def change_animation(self, new_anim="idle"):
         animation = self.get_current_animation()
@@ -87,6 +89,9 @@ class Player():
 
     def get_current_animation(self):
         return self.animations.get(self.current_animation)
+
+    def get_size(self):
+        return self.size
 
     def is_accelerating(self):
         keys = pygame.key.get_pressed()

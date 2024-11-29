@@ -38,6 +38,9 @@ class EnemyTurret(Scavengeable):
             
         distance = self_position.distance_to(player_position)
 
+        rx = sx - player.position[0]
+        ry = sy - player.position[1]
+
         if distance < globals.ENEMY_TURRET_RANGE:
-            angle = math.degrees(math.atan2(-sy, sx)) - 90
+            angle = math.degrees(math.atan2(-ry, rx)) - 90
             self.sprite = pygame.transform.rotate(self.animation._get_current_sprite(), angle)

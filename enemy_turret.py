@@ -18,6 +18,7 @@ class EnemyTurret(Scavengeable):
     def __init__(self, screen, maxDurability, resourceDrops):
         super().__init__(screen, maxDurability, resourceDrops)
 
+        self.position = [0, 0]
         self.projectiles = [
             Projectile(self),
             Projectile(self),
@@ -26,7 +27,6 @@ class EnemyTurret(Scavengeable):
             Projectile(self)
         ]
 
-        self.position = [0, 0]
         self.animation = SpriteAnimation(globals.BASE_PATH + 'assets/sprites/enemy/turret/', 'turret0', 1, '.png')
         self.sprite = self.animation._get_current_sprite()
 
@@ -69,4 +69,4 @@ class EnemyTurret(Scavengeable):
             
             for b in self.projectiles:
                 if b.is_active == False:
-                    b.shoot_at(rx, ry)
+                    b.shoot_at((self.position[0], self.position[1]), (rx, ry))

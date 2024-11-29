@@ -10,10 +10,8 @@
 import pygame
 
 class Projectile:
-    def __init__(self, entity, x, y, angle):
+    def __init__(self):
         self.entity = entity
-        self.x = x
-        self.y = y
         self.angle = angle
         self.speed = 10
         self.is_active = False
@@ -21,7 +19,8 @@ class Projectile:
         self.origin = pygame.Vector2(entity.position[0], entity.position[1])
         self.position = pygame.Vector2(entity.position[0], entity.position[1])
 
-    def shoot_at(self, target_position):
+    def shoot_at(self, origin, target_position):
+        self.origin = origin
         self.is_active = True
         self.direction = target_position - pygame.Vector2(self.x, self.y)
     

@@ -93,8 +93,8 @@ class Asteroid(Scavengeable):
         base_vector.scale_to_length(random.uniform(ASTEROID_MIN_SPAWN_DISTANCE, ASTEROID_MAX_SPAWN_DISTANCE))
         
         # Spawn the asteroids around the player
-        px = globals.SCREEN_W / 2
-        py = globals.SCREEN_H / 1
+        px = globals.SCREEN_W // 2 + globals.camera_offset_x
+        py = globals.SCREEN_H // 2 - globals.camera_offset_y
         
         self.position = [
             px + base_vector.x,

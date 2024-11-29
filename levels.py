@@ -137,7 +137,7 @@ class Level1(Level):
 class Level2(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 10
-        self.total_asteroids = 20
+        self.total_asteroids = 50
         super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids)
         self.background = pygame.image.load(Scene.PATH_BACKGROUND_LEVEL2).convert_alpha()
     

@@ -69,6 +69,9 @@ class Level(Scene):
             return
         if not self.planets:
             self.set_next_scene()
+        if globals.current_player_health <= 0:
+            self.next_scene = 'GameOver'
+            self.set_next_scene()
 
         super().draw()
         
@@ -148,12 +151,18 @@ class Level(Scene):
         pygame.draw.circle(self.screen,'black',(SCREEN_W//2,SCREEN_H//2),self.transition_counter_current*2)
 
     def set_next_scene(self):
+        if self.next_scene in ['GameWon','GameOver']:
+            self.reset_globals()
         set_scene(self.next_scene)
+    
+    def reset_globals(self):
+        globals.current_player_health = 3
+        globals.mining_range = 32
 
 class Level1(Level):
     def __init__(self, screen, scene_manager) -> None:
         self.total_planets = 5
-        self.total_asteroids = 10
+        self.total_asteroids = 25
         self.total_enemies = 5
         super().__init__(screen, scene_manager, self.total_planets,self.total_asteroids, self.total_enemies)
         self.next_scene = 'Level 2'

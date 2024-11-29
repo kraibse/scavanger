@@ -47,6 +47,7 @@ class Scene:
     def draw(self):
         self.screen.blit(self.background,(0,0))
 
+
 class Level(Scene):
     def __init__(self, screen, scene_manager, total_planets, total_asteroids) -> None:
         super().__init__(screen, scene_manager)

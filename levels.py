@@ -130,7 +130,7 @@ class Level(Scene):
         return self.planets
 
     def level_transition(self):
-        self.transition_counter_current += 1
+        self.transition_counter_current += SCREEN_W*0.03
         pygame.draw.circle(self.screen,'black',(SCREEN_W//2,SCREEN_H//2),self.transition_counter_current*2)
 
 class Level1(Level):

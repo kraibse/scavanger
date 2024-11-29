@@ -16,6 +16,7 @@ from planet import Planet
 from asteroids import Asteroid
 from ui import UI
 from shop import Shop
+from text_box import TextBox
 
 import globals
 from globals import *
@@ -55,10 +56,15 @@ class Level(Scene):
         self.spawn_planets()
         self.spawn_asteroids()
         self.player = Player(self)
+        self.transition_counter_current = 0
+        self.transition_counter_max = SCREEN_W//2
     
     def draw(self):
+        if self.transition_counter_current <= self.transition_counter_max:
+            self.level_transition()
+            return
         super().draw()
-
+        
         for planet in self.planets:
             if self.player.is_colliding(planet):
                 self.player.mine(planet)
@@ -122,6 +128,10 @@ class Level(Scene):
             self.planets.append(new_planet)
         
         return self.planets
+
+    def level_transition(self):
+        self.transition_counter_current += 1
+        pygame.draw.circle(self.screen,'black',(SCREEN_W//2,SCREEN_H//2),self.transition_counter_current*2)
 
 class Level1(Level):
     def __init__(self, screen, scene_manager) -> None:
